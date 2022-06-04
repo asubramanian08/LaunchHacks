@@ -33,7 +33,7 @@ def knapsack(costs, values, budget):
         for j in range(budget + 1):
             usingItemI = knapsackMat[i][j]
             if j >= costs[i]:
-                usingItemI = knapsackMat[i][k - costs[i]] + values[i]
+                usingItemI = knapsackMat[i][j - costs[i]] + values[i]
             knapsackMat[i+1][j] = max(knapsackMat[i][j], usingItemI)
     # figure out what items to include
     including = []
@@ -41,6 +41,6 @@ def knapsack(costs, values, budget):
     for i in range(len(costs), 0, -1):
         if knapsackMat[i][currSpent] != knapsackMat[i-1][currSpent]:
             currSpent -= costs[i - 1]
-            include.append(i - 1)
+            including.append(i - 1)
     # return the items the include, max happiness
-    return include, knapsackMat[len(costs)][budget]
+    return including, knapsackMat[len(costs)][budget]
