@@ -2,7 +2,7 @@
 
 
 def selectBuys(budget: int, yearlyWantsPrices: list, yearlyWantsValues: list,
-               oneTimeWantsPrices: list, oneTimeWantsValues: list) -> tuple[list, list, int]:
+               oneTimeWantsPrices: list, oneTimeWantsValues: list) -> tuple[list, list, int, int]:
     """ Selects the optimal items to buy to maximize the happiness value.
 
     Parameters
@@ -23,26 +23,36 @@ def selectBuys(budget: int, yearlyWantsPrices: list, yearlyWantsValues: list,
     * list -> yearly wants that should be bought
     * list -> one time purchases that should be bought
     * int -> happiness attained for all items bought
+    * int -> total price of all purchases
     """
 
-    # determine the best items to buy (knapsack algorithm)
+    # Best items to buy (knapsack algorithm)
     cumulativePrices = yearlyWantsPrices + oneTimeWantsPrices
     cumulativeValues = yearlyWantsValues + oneTimeWantsValues
     allPurchases, happiness = knapsack(
         cumulativePrices, cumulativeValues, budget)
 
-    # determine which yearly vs. one time items were bought
+    # Which yearly vs. one time items were bought
     yearlyPurchases = []
     oneTimePurchases = []
     mwCount = len(yearlyWantsPrices)
     for itemBought in allPurchases:
         # the item is within the range of yearly wants
-        (yearlyPurchases if itemBought <
-         mwCount else oneTimePurchases).append(itemBought)
+        if itemBought < mwCount:
+            yearlyPurchases.append(itemBought)
+        else:  # item is a one time purchase
+            oneTimePurchases.append(itemBought - mwCount)
 
-    # return all yearly and one time purchases made
-    # along with how happy it will make the user
-    return yearlyPurchases, oneTimePurchases, happiness
+    # Total price of all purchases
+    totalPrice = 0
+    for item in yearlyPurchases:
+        totalPrice += yearlyWantsPrices[item]
+    for item in oneTimePurchases:
+        totalPrice += oneTimeWantsPrices[item]
+
+    # return all yearly and one time purchases made,
+    # happy it will make the user, and how much it costs
+    return yearlyPurchases, oneTimePurchases, happiness, totalPrice
 
 
 def knapsack(prices: list, values: list, budget: int) -> list:
