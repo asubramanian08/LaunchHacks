@@ -1,7 +1,7 @@
 """ Determine what items the user should buy contained by the amount of money they have. """
 
 
-def selectBuys(budget: int, monthlyWantsPrices: list, monthlyWantsValues: list,
+def selectBuys(budget: int, yearlyWantsPrices: list, yearlyWantsValues: list,
                oneTimeWantsPrices: list, oneTimeWantsValues: list) -> tuple[list, list, int]:
     """ Selects the optimal items to buy to maximize the happiness value.
 
@@ -9,10 +9,10 @@ def selectBuys(budget: int, monthlyWantsPrices: list, monthlyWantsValues: list,
     ----------
     budget : int
          - maximum amount of money that can be spent
-    monthlyWantsPrices : list
-    monthlyWantsValues : list
-         - prices or happiness values for all the monthly wanted items
-         - examples of monthly wants are netflix subscriptions or amusement park passes
+    yearlyWantsPrices : list
+    yearlyWantsValues : list
+         - prices or happiness values for all the yearly wanted items
+         - examples of yearly wants are netflix subscriptions or amusement park passes
     oneTimeWantsPrices : list
     oneTimeWantsValues : list
          - prices or happiness values for all wanted items that are purchased once
@@ -20,29 +20,29 @@ def selectBuys(budget: int, monthlyWantsPrices: list, monthlyWantsValues: list,
 
     Returns
     -------
-    * list -> monthly wants that should be bought
+    * list -> yearly wants that should be bought
     * list -> one time purchases that should be bought
     * int -> happiness attained for all items bought
     """
 
     # determine the best items to buy (knapsack algorithm)
-    cumulativePrices = monthlyWantsPrices + oneTimeWantsPrices
-    cumulativeValues = monthlyWantsValues + oneTimeWantsValues
+    cumulativePrices = yearlyWantsPrices + oneTimeWantsPrices
+    cumulativeValues = yearlyWantsValues + oneTimeWantsValues
     allPurchases, happiness = knapsack(
         cumulativePrices, cumulativeValues, budget)
 
-    # determine which monthly vs. one time items were bought
-    monthlyPurchases = []
+    # determine which yearly vs. one time items were bought
+    yearlyPurchases = []
     oneTimePurchases = []
-    mwCount = len(monthlyWantsPrices)
+    mwCount = len(yearlyWantsPrices)
     for itemBought in allPurchases:
-        # the item is within the range of monthly wants
-        (monthlyPurchases if itemBought <
+        # the item is within the range of yearly wants
+        (yearlyPurchases if itemBought <
          mwCount else oneTimePurchases).append(itemBought)
 
-    # return all monthly and one time purchases made
+    # return all yearly and one time purchases made
     # along with how happy it will make the user
-    return monthlyPurchases, oneTimePurchases, happiness
+    return yearlyPurchases, oneTimePurchases, happiness
 
 
 def knapsack(prices: list, values: list, budget: int) -> list:
