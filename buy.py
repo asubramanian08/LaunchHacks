@@ -1,7 +1,30 @@
-# pick what items to buy to maximize happiness
+""" Determine what items the user should buy contained by the amount of money they have. """
 
-def selectBuys(budget, monthlyWantsPrices, monthlyWantsValues,
-               oneTimeWantsPrices, oneTimeWantsValues):
+
+def selectBuys(budget: int, monthlyWantsPrices: list, monthlyWantsValues: list,
+               oneTimeWantsPrices: list, oneTimeWantsValues: list) -> tuple[list, list, int]:
+    """ Selects the optimal items to buy to maximize the happiness value.
+
+    Parameters
+    ----------
+    budget : int
+         - maximum amount of money that can be spent
+    monthlyWantsPrices : list
+    monthlyWantsValues : list
+         - prices or happiness values for all the monthly wanted items
+         - examples of monthly wants are netflix subscriptions or amusement park passes
+    oneTimeWantsPrices : list
+    oneTimeWantsValues : list
+         - prices or happiness values for all wanted items that are purchased once
+         - examples of one time wants are laptops or the latest fashionable clothing
+
+    Returns
+    -------
+    * list -> monthly wants that should be bought
+    * list -> one time purchases that should be bought
+    * int -> happiness attained for all items bought
+    """
+
     # determine the best items to buy (knapsack algorithm)
     cumulativePrices = monthlyWantsPrices + oneTimeWantsPrices
     cumulativeValues = monthlyWantsValues + oneTimeWantsValues
@@ -22,7 +45,23 @@ def selectBuys(budget, monthlyWantsPrices, monthlyWantsValues,
     return monthlyPurchases, oneTimePurchases, happiness
 
 
-def knapsack(prices, values, budget):
+def knapsack(prices: list, values: list, budget: int) -> list:
+    """ Knapsack algorithms that backtracks to determine what items were brought
+
+    Parameters
+    ----------
+    prices : list
+         - prices of all the items that can be "packed"
+    values : list
+         - happiness value attained from each item
+    budget : int
+         - maximum amount of money that can be spent
+
+    Returns
+    -------
+    * list -> items to buy
+    """
+
     # run the knapsack algorithm
     knapsackMat = [[]]
     for i in range(budget):
