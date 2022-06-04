@@ -1,8 +1,10 @@
-#from buy import selectBuys
+from buy import selectBuys
+
+# Introduction
+print("Welcome to money manager simmulator")
+# GIVE AN QUICK EXPLAINATION OF THIS GAME
 
 
-income = int(input("Enter your income per year: "))
-yearlyBudget = income
 def askCosts(questions):
   totalCost = 0
   
@@ -12,18 +14,16 @@ def askCosts(questions):
     totalCost += (currCost)
   
   # additional costs
-  print("Enter any additional costs (NA to quit). Write the item then the cost in dollars. Per year")
+  print("Enter any additional costs (NA to quit). Write the item then the cost in dollars. These costs happen every year.")
   item = ""
- 
   while item != "NA":
-   
-   # item, currCost = input("Enter additional costs: ").split(' ')
-    
-    item=input("Enter additional costs: ")
-    if item !="NA":
-      totalCost+=int(item)
-  # return the total costs
-  return income-totalCost  
+    item, currCost = input("Enter additional costs: ").split(' ')
+  
+    # return the total costs
+  return totalCost
+
+# get the net salery (income - taxes)
+income = int(input("Enter your income per year: "))
 taxes=0
 if income>=625370:
   taxes+=60789.92+((income-625369)*0.123)
@@ -43,75 +43,49 @@ elif income>=9326 :
   taxes+=93.25+((income-9326 )*0.02)
 else:
   taxes=income*0.01
-print(taxes)
+# print(taxes)
 income=income-taxes
-print(income-taxes)
+# print(income-taxes)
+
 # yearly costs
 print("Please enter your yearly cost for the following items (in USD)")
 yearlyCosts = askCosts(["Rent/Morgage: ", "Food: ", "Gas: ", "Electicty bill: "])
-new_yearlyCosts=yearlyCosts
-print(new_yearlyCosts)
-  # rent = int(input(questions))
-  # longterm_goal = int(input(questions))
-  # food = int(input(questions))
-  # gas_electricty_bill = int(input(questions))
-  # gas = int(input(questions)
-#yearly costs
-
-# number
-#print(yearlyCosts)
-#of elements as input
-
-
-
-
-
-
-
-
-
-
-#for q in questions:
- # cost = int(input(q))
-  #yearlyBudget = yearlyBudget - cost
-#for i in range(4):
- # print(questions)
+yearlyBudget = income-yearlyCosts
+print(yearlyBudget)
+if(yearlyBudget<0):
+  print("insuficunet funds")
+  exit()
+else:
+  print("This is how much you can spend/ have savings per year", yearlyBudget)
 
 # yearly wants
-#itemPrices = [] # 
-
-#n = int(input("type in the umber of the amount of items : "))
+yearlyWantsPrices = []
+yearlyWantsValues = []
+yearlyWants = [str]
+# WRITE THIS LATER
   
-# iterating till the range
-#for i in range(0, n):
-   # ele = int(input())
+# Major loop (1 iteration = 1 year)
+yearsToSimmulate = int(input("How many years do you want to simmulate: "))
+yearlyLeftOver = 0
+for year in range(yearsToSimmulate):
+  currBudget = yearlyBudget + yearlyLeftOver
+  # one time costs
+  currBudget -= askCosts(["Did you have any medical expensis"])
+  # ASK MORE QUESTIONS
   
- #   itemPrices.append(ele) # adding the element
-      
-#print(lst)
-
-#itemValues = [] # happiness value
-
-
-
-# MAJOR LOOP
-#for m in nextyear:
-  
-  # ask for one time costs
-  # ask for one time wants
+  # one time wants
+  # WRITE THIS LATER
+  oneTimeWantsPrices = []
+  oneTimeWantsValues = []
+  oneTimeWants = [str]
     # price + happynes
+
+  # "buy the items"
+  yearlyPurchases, oneTimePurchases, happiness, amountSpent = selectBuys(currBudget, yearlyWantsPrices, yearlyWantsValues, oneTimeWantsValues, oneTimeWantsValues)
+  yearlyLeftOver = currBudget - amountSpent
+  # PRINT THE ITEMS THAT WERE BOUGHT
+  
   # STOCKS
 
-#rent = int(input("Enter your rent: "))
-#longterm_goal = int(input("Enter the amount of money for your longterm #unneededgoal: "))
-#food = int(input("Enter your daily food cost: "))
-#gas_electricty_bill = int(input("Enter your yearly electricity/gas bill: "))
-#gas = int(input("How many times a year do you fll up gas: "))time=retirment-age
-#x=1000000/time
-#y=x/12
-#spending=income-rent-longterm_goal-30*food-gas_electricty_bill-gas*7-y
-#spendings=0.0725*spending
-#h=spendings-900
-#print(h)
-#if(h<0):
-  #print("hi")
+# ending
+print("Thank you for playing the money manager simmulator")
