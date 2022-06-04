@@ -1,6 +1,6 @@
 # LaunchHacks
 
-See our [repl](https://replit.com/@Jasamarbir/Launch-Hacks), the IDE we used to collaberativly code.
+See our [repl](https://replit.com/@Jasamarbir/Launch-Hacks), the IDE we used to collaboratively code.
 
 ## Our project
 (Money manager ...)
