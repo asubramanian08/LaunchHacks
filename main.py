@@ -3,9 +3,9 @@ from buy import selectBuys
 # Introduction
 print("Welcome to money manager simulator")
 print("Congrats, Your financial troubles are now over, \
-    with this program you will be able to find out if \
-    you will be able to support your current lifestyle \
-    based on your yearly income.")
+with this program you will be able to find out if \
+you will be able to support your current lifestyle \
+based on your yearly income.")
 
 
 def askCosts(questions):

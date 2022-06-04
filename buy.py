@@ -2,7 +2,7 @@
 
 
 def selectBuys(budget: int, yearlyWantsPrices: list, yearlyWantsValues: list,
-               oneTimeWantsPrices: list, oneTimeWantsValues: list) -> tuple[list, list, int, int]:
+               oneTimeWantsPrices: list, oneTimeWantsValues: list) -> (list, list, int, int):
     """ Selects the optimal items to buy to maximize the happiness value.
 
     Parameters
