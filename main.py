@@ -20,7 +20,7 @@ def askCosts(questions):
     item = ""
     currCost = 0
     while item != "NA":
-        totalCost += currCost
+        totalCost += int(currCost)
         item, currCost = input("Enter additional costs: ").split(' ')
     # return the total costs
     return totalCost
@@ -33,17 +33,20 @@ def askWants(questions):
     print("Respond in the form: \"itemName price happinessValue\"")
     # ask questions
     for q in questions:
-        currCost = int(input(q))
-        totalCost += currCost
-    # additional costs
-    print("Enter any additional costs (NA to quit). Write the item then the cost in dollars.")
-    item = ""
-    currCost = 0
-    while item != "NA":
-        totalCost += currCost
-        item, currCost = input("Enter additional costs: ").split(' ')
-    # return the total costs
-    return totalCost
+        itemName, price, value = input(q).split(' ')
+        itemNames.append(itemName)
+        prices.append(int(price))
+        values.append(int(value))
+    # additional wants
+    print("Enter any additional wants with the same format as before (NA to quit).")
+    itemName, price, value = input("Enter additional costs:").split(' ')
+    while itemName != "NA":
+        itemNames.append(itemName)
+        prices.append(int(price))
+        values.append(int(value))
+        itemName, price, value = input("Enter additional costs:").split(' ')
+    # return the names, prices, and values
+    return itemNames, prices, values
   
 # get the net salary (income - taxes)
 income = int(input("Enter your income per year: "))
