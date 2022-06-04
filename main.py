@@ -25,7 +25,26 @@ def askCosts(questions):
     # return the total costs
     return totalCost
 
-
+def askWants(questions):
+    """ Ask the user a bunch of questions to determine their yearly or one time wants. """
+    itemNames = []
+    prices = []
+    values = []
+    print("Respond in the form: \"itemName price happinessValue\"")
+    # ask questions
+    for q in questions:
+        currCost = int(input(q))
+        totalCost += currCost
+    # additional costs
+    print("Enter any additional costs (NA to quit). Write the item then the cost in dollars.")
+    item = ""
+    currCost = 0
+    while item != "NA":
+        totalCost += currCost
+        item, currCost = input("Enter additional costs: ").split(' ')
+    # return the total costs
+    return totalCost
+  
 # get the net salary (income - taxes)
 income = int(input("Enter your income per year: "))
 taxes = 0
@@ -82,14 +101,17 @@ for year in range(yearsToSimulate):
     oneTimeWantsValues = []
     oneTimeWants = [str]
     # price + happiness
-
+    
     # "buy the items"
     yearlyPurchases, oneTimePurchases, happiness, amountSpent = selectBuys(
         currBudget, yearlyWantsPrices, yearlyWantsValues, oneTimeWantsValues, oneTimeWantsValues)
     yearlyLeftOver = currBudget - amountSpent
+    print("BUY THE FOLLOWING YEARLY ITEMS")  
     for i in yearlyPurchases:
         print(yearlyWants[i])
-    # PRINT THE ITEMS THAT WERE BOUGHT
+    print("BUY THE FOLLOWING ONE TIME PURCHASES")  
+    for i in oneTimePurchases:
+        print(oneTimeWants[i])
 
     # STOCKS
 
