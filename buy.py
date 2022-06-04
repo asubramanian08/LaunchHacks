@@ -34,7 +34,7 @@ def selectBuys(budget: int, monthlyWantsPrices: list, monthlyWantsValues: list,
     # determine which monthly vs. one time items were bought
     monthlyPurchases = []
     oneTimePurchases = []
-    mwCount = len(monthlyWantsPrice)
+    mwCount = len(monthlyWantsPrices)
     for itemBought in allPurchases:
         # the item is within the range of monthly wants
         (monthlyPurchases if itemBought <
