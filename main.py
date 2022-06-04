@@ -1,17 +1,28 @@
 income = int(input("Enter your income per month: "))
 monthlyBudget = income
 
-def askUser(questions):
-  #questions=[rent, longterm_goal, food, gas_electricty_bill, gas]
+def askCosts(questions):
   totalCost = 0
+  
+  # ask questions
   for q in questions:
     currCost = int(input(q))
     totalCost += currCost
+  
+  # additional costs
+  print("Enter any additional costs (NA to quit). Write the item then the cost in dollars.")
+  item = ""
+  currCost = 0
+  while item != "NA":
+    totalCost += currCost
+    item, currCost = input("Enter additional costs: ").split(' ')
+  
+  # return the total costs
   return totalCost
 
 # monthly costs
-print("Please enter your monthly cost for the following items")
-montlyCosts = askUser(["Rent/Morgage: ", "Food: ", "Gas: ", "Electicty bill: "])
+print("Please enter your monthly cost for the following items (in USD)")
+monthlyCosts = askCosts(["Rent/Morgage: ", "Food: ", "Gas: ", "Electicty bill: "])
   
   # rent = int(input(questions))
   # longterm_goal = int(input(questions))
