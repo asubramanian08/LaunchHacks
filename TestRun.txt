@@ -5,34 +5,13 @@ NA
 Netflix 10 5
 NA
 Donate 500
- NA
- y
- buy GOOGL 2
- N
- Pet 100 5
- NA
-
-
-
-Year 2:
-
-Enter a cost: Donation 200
-Enter another cost: NA
- N
-
-You can spend $43674.22 this year on things you want
-Enter the items you want this year (in USD)
-Think about: Trends, New pet, clothing, ...
-Respond in the form "itemName price happinessValue" (NA to stop).
-Enter a wanted item: iphone 1000 5
-Enter another wanted item: NA
-
-Buy the following yearly wanted items.
-Netflix
-Buy the following one time items.
-iphone
-After buying the above items you will be 1000  "happy" and will have $43659.22 left over for next year
-
-Thank you for playing the money manager simulator!
-We hope you enjoyed managing your finances! 
- 
+NA
+y
+buy GOOGL 2
+N
+Pet 100 5
+NA
+Donation 200
+NA
+iphone 1000 5
+NA
