@@ -76,29 +76,27 @@ elif income >= 9326:
 else:
     taxes = income * 0.01
 income = income - taxes
+taxes = round(taxes, 2)
+income = round(income, 2)
+print("You have", taxes, "of income taxes leaving you with", income)
 
 # yearly costs
-print("Please enter your yearly cost for the following items (in USD)")
-yearlyCosts = askCosts(
-    ["Rent/Mortgage: ", "Food: ", "Gas: ", "Electricity bill: "])
-yearlyBudget = income - yearlyCosts
-print(yearlyBudget)
+print("Please enter your yearly costs for the following items (in USD)")
+yearlyCosts = askCosts(["Set aside (saving up for a car ...): ", "Rent/Mortgage: ", "Food: ", "Gas: ", "Electricity bill: "])
+yearlyBudget = round(income - yearlyCosts, 2)
 if (yearlyBudget < 0):
-    print("insufficient funds")
-    exit()
+    exit("insufficient funds")
 else:
-    print("This is how much you can spend/ have savings per year", yearlyBudget)
+    print("You can spend", yearlyBudget, "every year")
 
-# yearly wants
-yearlyWantsPrices = []
-yearlyWantsValues = []
-yearlyWants = [str]
-# WRITE THIS LATER
+# yearly wants -> ADD QUESTIONS
+print("Enter the items you want ever year (in USD)")
+yearlyWants, yearlyWantsPrices, yearlyWantsValues = askWants(["Amusmement park season pass: "], ["Media subscription: "], ["Newspaper: "])
 
 # Major loop (1 iteration = 1 year)
 yearsToSimulate = int(input("How many years do you want to simulate: "))
 yearlyLeftOver = 0
-trading = stockManager()
+sm = stockManager()
 for year in range(yearsToSimulate):
     # one time costs
     currBudget = yearlyBudget + yearlyLeftOver
@@ -109,27 +107,31 @@ for year in range(yearsToSimulate):
         ["How much money did you spend on your hobbies"],
         ["Do you owe any money this year?"])
 
-    # stocks
+    # stocks -> RENAME TRADING
     print("These are the stocks you have:")
-    trading.display()
+    sm.display()
     inputStr = input("Would you like to trade stocks (y/N): ")
     while inputStr[0].lower() != 'n':
+        print("You have", currBudget, "left to spend")
         ticker, shares, action = input(
             "Enter the ticker, # of shares, and buy or sell: ")
         if action == "buy":
-            currBudget -= trading.buy(ticker, int(shares))
+            bought, price = sm.buy(ticker, int(shares), currBudget)
+            print("Bought", bought, "shares of", ticker, "at", price)
+            currBudget -= bought * price
         elif action == "sell":
-            currBudget += trading.sell(ticker, int(shares))
+            sold, price = sm.sell(ticker, int(shares))
+            print("Sold", sold, "shares of", ticker, "at", price)
+            currBudget += sold * price
         else:
             print("invalid action")
+        
         inputStr = input("Would you like to continue trading stocks (y/N): ")
 
-    # one time wants
+    # one time wants -> MORE QUESTIONS
     print("You can spend $", currBudget, "this year on things you want")
-    oneTimeWantsPrices = []
-    oneTimeWantsValues = []
-    oneTimeWants = [str]
-    # WRITE THIS LATER
+    print("Enter the items you want this year (in USD)")
+    oneTimeWants, oneTimeWantsPrices, oneTimeWantsValues = [] = askWants(["New pet"])
 
     # "buy the items"
     yearlyPurchases, oneTimePurchases, happiness, amountSpent = selectBuys(
@@ -141,6 +143,7 @@ for year in range(yearsToSimulate):
     print("BUY THE FOLLOWING ONE TIME PURCHASES")
     for i in oneTimePurchases:
         print(oneTimeWants[i])
+    print("After buying the above items you will be", happiness, "\"happy\" and will have", yearlyLeftOver, "left over for next year")
 
 
 # ending

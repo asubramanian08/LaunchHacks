@@ -5,14 +5,13 @@
 
 class stockManager:
     class stock:
-        def __init__(self, ticker: str, shares: int = 1):
+        def __init__(self, ticker: str, shares: int, limit: int):
             self.ticker = ticker
-            self.shares = shares
             self.boughtAt = self.price()
+            self.shares = min(shares, int(limit / self.boughtAt))
 
         def __str__(self) -> str:
-            return f"{self.shares} shares of {self.ticker} \
-    bought at {self.boughtAt} now {self.price()}"
+            return f"{self.shares} shares of {self.ticker} bought at {self.boughtAt} now {self.price()}"
 
         def sellShares(self, sell: int = 1):
             toSell = min(self.shares, sell)
@@ -28,12 +27,12 @@ class stockManager:
 
     def __init__(self):
         self.portfolio = []
+    
+    def buy(self, ticker, shares, limit) -> (int, int):
+        self.portfolio.append(self.stock(ticker, shares, limit))
+        return self.portfolio[-1].shares, self.portfolio[-1].boughtAt
 
-    def buy(self, ticker, shares) -> int:
-        self.portfolio.append(self.stock(ticker, shares))
-        return self.portfolio[-1].shares * self.portfolio[-1].boughtAt
-
-    def sell(self, ticker, shares) -> int:
+    def sell(self, ticker, shares) -> (int, int):
         sharesSold = 0
         currPrice = self.stock.quote(ticker)
         newPort = []
@@ -43,7 +42,7 @@ class stockManager:
             if s.shares > 0:
                 newPort.append(s)
         self.portfolio = newPort
-        return sharesSold * currPrice
+        return sharesSold, currPrice
 
     def display(self):
         for p in self.portfolio:
