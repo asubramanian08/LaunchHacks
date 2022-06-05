@@ -1,7 +1,6 @@
 from buy import selectBuys
 from stocks import stockManager
 
-# TODO main.py: Add yearly / one time wants questions
 # TODO main.py, stocks.py: add better comments
 #   Docstring, whole files notes, arg type, return type
 # TODO stocks.py: class and its methods docstring
@@ -10,53 +9,31 @@ from stocks import stockManager
 # TODO: final run -> lots of testing
 
 
-def askCosts(questions: list) -> float:
-    """ Ask the user a bunch of questions to determine their yearly or one time costs. """
+def askCosts() -> float:
+    """ Determine the users yearly or one time costs. """
     totalCost = 0
-    print("Enter NA if the given cost doesn't apply")
-    # ask questions
-    for q in questions:
-        inputStr = input(q)
-        if inputStr.upper() != "NA":
-            currCost = round(float(inputStr), 2)
-            totalCost += currCost
-    # additional costs
-    print("Enter any additional costs (NA to quit).")
-    print("Write the item then the cost in dollars.")
-    inputStr = "ITEM 0"
+    print("Write the item then the cost in dollars (NA to stop).")
+    inputStr = input("Enter a cost: ")
     while inputStr.upper() != "NA":
         item, currCost = inputStr.split(' ')
         totalCost += round(float(currCost), 2)
-        inputStr = input("Enter additional costs: ")
-    # return the total costs
+        inputStr = input("Enter another cost: ")
     return totalCost
 
 
-def askWants(questions: list) -> (list, list, list):
-    """ Ask the user a bunch of questions to determine their yearly or one time wants. """
+def askWants() -> (list, list, list):
+    """ Determine the users yearly or one time wants. """
     itemNames = []
     prices = []
     values = []
-    print("Respond in the form: \"itemName price happinessValue\".")
-    print("If there is no answer enter NA.")
-    # ask questions
-    for q in questions:
-        inputStr = input(q)
-        if inputStr.upper() != "NA":
-            itemName, price, value = inputStr.split(' ')
-            itemNames.append(itemName)
-            prices.append(round(float(price), 2))
-            values.append(round(float(value), 2))
-    # additional wants
-    print("Enter any additional wants with the same format as before (NA to quit).")
-    inputStr = input("Enter additional costs: ")
+    print("Respond in the form \"itemName price happinessValue\" (NA to stop).")
+    inputStr = input("Enter a wanted item: ")
     while inputStr.upper() != "NA":
         itemName, price, value = inputStr.split(' ')
         itemNames.append(itemName)
         prices.append(round(float(price), 2))
         values.append(round(float(value), 2))
-        inputStr = input("Enter additional costs: ")
-    # return the names, prices, and values
+        inputStr = input("Enter another wanted item: ")
     return itemNames, prices, values
 
 
@@ -100,9 +77,8 @@ print()  # new line
 
 # Yearly costs
 print("Enter your yearly costs for the following items (in USD).")
-yearlyCosts = askCosts([
-    "Set aside (saving up for long term goal ...): ",
-    "Rent/Mortgage: ", "Food: ", "Gas: ", "Electricity: "])
+print("Think about: Rent, Gas, Electricity, Long term goals, ...")
+yearlyCosts = askCosts()
 yearlyBudget = round(income - yearlyCosts, 2)
 if (yearlyBudget < 0):
     exit("insufficient funds\n")
@@ -113,9 +89,8 @@ print()  # new line
 
 # Yearly wants
 print("Enter the items you want ever year (in USD).")
-yearlyWants, yearlyWantsPrices, yearlyWantsValues = askWants([
-    "Media subscription: ", "Newspaper: ",
-    "Amusement park season pass: "])
+print("Think about: 6 flags season pass, netflix, newspaper, ...")
+yearlyWants, yearlyWantsPrices, yearlyWantsValues = askWants()
 print()  # new line
 
 
@@ -124,15 +99,16 @@ yearlyLeftOver = 0
 stockSimulator = stockManager()
 print("Starting year by year simulation.\n")
 for year in range(yearsToSimulate):
-    print(f"\nYear {year + 1}:\n")  # spacing + year #
-
-    # One time costs
+    # Inform user
+    print(f"\nYear {year + 1}:")
     currBudget = yearlyBudget + yearlyLeftOver
     print(f"You can spend ${currBudget:.2f} in total this year")
-    print("Enter costs for this year (in USD).")
-    currBudget -= askCosts(
-        ["Medical expenses: ", "Vacation: ",
-         "Donations: ", "Hobbies: ", "Money Owes: "])
+    print()  # new line
+
+    # One time costs
+    print("Enter your costs for this year (in USD).")
+    print("Think about: Medical costs, Vacation, Donations, ...")
+    currBudget -= askCosts()
     print()  # new line
 
     # Stock trading
@@ -160,8 +136,8 @@ for year in range(yearsToSimulate):
     # One time wants
     print(f"You can spend ${currBudget:.2f} this year on things you want")
     print("Enter the items you want this year (in USD)")
-    oneTimeWants, oneTimeWantsPrices, oneTimeWantsValues = askWants(
-        ["New pet: "])
+    print("Think about: Trends, New pet, clothing, ...")
+    oneTimeWants, oneTimeWantsPrices, oneTimeWantsValues = askWants()
     print()  # new line
 
     # "buy the items"
