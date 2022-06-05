@@ -1,5 +1,5 @@
 from buy import selectBuys
-from stock import stockManager
+from stocks import stockManager
 
 # Introduction
 print("Welcome to money manager simulator")

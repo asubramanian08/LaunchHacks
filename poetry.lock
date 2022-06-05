@@ -1,8 +1,18 @@
-package = []
+[[package]]
+name = "stock-quote-cli"
+version = "1.0.0"
+description = "show stock info"
+category = "main"
+optional = false
+python-versions = "*"
 
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.8.0,<3.9"
-content-hash = "7e2c60a22372087a30b000268120393f18c9db912361d09aae060e946ab6318e"
+content-hash = "e6ff8b4558858ff42cebdb5d3e9bd29c463de762e8a4344cb85365ede1add071"
 
 [metadata.files]
+stock-quote-cli = [
+    {file = "stock-quote-cli-1.0.0.tar.gz", hash = "sha256:8c4dedd976670bd30cc2a0569f10ba7f51b70967ae2d64677252955051fd5cd5"},
+    {file = "stock_quote_cli-1.0.0-py2-none-any.whl", hash = "sha256:b4734a624e8b2249b8ca14bef05d5516c897456a598b2750ec5d07e9e8e82bc5"},
+]
