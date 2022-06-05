@@ -8,10 +8,11 @@ Donate 500
 NA
 y
 buy GOOGL 2
-N
+No
 Pet 100 5
 NA
 Donation 200
 NA
+No
 iphone 1000 5
 NA
