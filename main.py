@@ -17,11 +17,11 @@ def askCosts(questions):
         totalCost += currCost
     # additional costs
     print("Enter any additional costs (NA to quit). Write the item then the cost in dollars.")
-    item = ""
-    currCost = 0
-    while item != "NA":
+    inputStr = "ITEM 0"
+    while inputStr != "NA":
+        item, currCost = inputStr.split(' ')
         totalCost += int(currCost)
-        item, currCost = input("Enter additional costs: ").split(' ')
+        inputStr = input("Enter additional costs: ")
     # return the total costs
     return totalCost
 
@@ -30,21 +30,24 @@ def askWants(questions):
     itemNames = []
     prices = []
     values = []
-    print("Respond in the form: \"itemName price happinessValue\"")
+    print("Respond in the form: \"itemName price happinessValue\". If there is no answer enter NA")
     # ask questions
     for q in questions:
-        itemName, price, value = input(q).split(' ')
-        itemNames.append(itemName)
-        prices.append(int(price))
-        values.append(int(value))
+        inputStr = input(q)
+        if inputStr != "NA":
+            itemName, price, value = inputStr.split(' ')
+            itemNames.append(itemName)
+            prices.append(int(price))
+            values.append(int(value))
     # additional wants
     print("Enter any additional wants with the same format as before (NA to quit).")
-    itemName, price, value = input("Enter additional costs:").split(' ')
-    while itemName != "NA":
+    inputStr = input("Enter additional costs:")
+    while inputStr != "NA":
+        itemName, price, value = inputStr.split(' ')
         itemNames.append(itemName)
         prices.append(int(price))
         values.append(int(value))
-        itemName, price, value = input("Enter additional costs:").split(' ')
+        inputStr = input("Enter additional costs:")
     # return the names, prices, and values
     return itemNames, prices, values
   
@@ -95,12 +98,7 @@ yearlyLeftOver = 0
 for year in range(yearsToSimulate):
     currBudget = yearlyBudget + yearlyLeftOver
     # one time costs
-    currBudget -= askCosts(["Did you have any medical expenses"])
-    currBudget -= askCosts(["Do you want to go on a vacation if so how much did it cost"])
-    currBudget -= askCosts(["Did you donate any money"])
-    currBudget -= askCosts(["How much money did you spend on your hobbies"])
-    currBudget -= askCosts(["Do you owe any money this year?"])
-    # ASK MORE QUESTIONS
+    currBudget -= askCosts(["Did you have any medical expenses"], ["Do you want to go on a vacation if so how much did it cost"], ["Did you donate any money"], ["How much money did you spend on your hobbies"], ["Do you owe any money this year?"])
 
     # one time wants
     oneTimeWantsPrices = []
