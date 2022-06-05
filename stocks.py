@@ -2,24 +2,25 @@
 # look up how to annotate a class and its methods
 # add in the actually stock quote code
 
+
 class stockManager:
     class stock:
         def __init__(self, ticker: str, shares: int = 1):
             self.ticker = ticker
             self.shares = shares
-            self.boughtAt = self.stockPrice()
+            self.boughtAt = self.price()
 
         def __str__(self) -> str:
             return f"{self.shares} shares of {self.ticker} \
-    bought at {self.boughtAt} now {self.stockPrice()}"
+    bought at {self.boughtAt} now {self.price()}"
 
         def sellShares(self, sell: int = 1):
             toSell = min(self.shares, sell)
             self.shares -= toSell
             return toSell
 
-        def stockPrice(self) -> int:
-            return quote(self.ticker)
+        def price(self) -> int:
+            return self.quote(self.ticker)
 
         @staticmethod
         def quote(ticker: str) -> int:
@@ -29,12 +30,12 @@ class stockManager:
         self.portfolio = []
 
     def buy(self, ticker, shares) -> int:
-        self.portfolio.append(stock(ticker, shares))
+        self.portfolio.append(self.stock(ticker, shares))
         return self.portfolio[-1].shares * self.portfolio[-1].boughtAt
 
     def sell(self, ticker, shares) -> int:
         sharesSold = 0
-        currPrice = stock.quote(ticker)
+        currPrice = self.stock.quote(ticker)
         newPort = []
         for s in self.portfolio:
             if s.ticker == ticker and sharesSold < shares:
@@ -45,9 +46,9 @@ class stockManager:
         return sharesSold * currPrice
 
     def display(self):
-        for p in portfolio:
+        for p in self.portfolio:
             if p.shares > 0:
                 print(p)
 
     def quote(self, ticker) -> int:
-        return stock.quote(ticker)
+        return self.stock.quote(ticker)

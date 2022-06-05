@@ -82,13 +82,13 @@ def knapsack(prices: list, values: list, budget: int) -> list:
             usingItemI = knapsackMat[i][j]
             if j >= prices[i]:
                 usingItemI = knapsackMat[i][j - prices[i]] + values[i]
-            knapsackMat[i+1][j] = max(knapsackMat[i][j], usingItemI)
+            knapsackMat[i + 1][j] = max(knapsackMat[i][j], usingItemI)
 
     # figure out what items to include
     including = []
     currSpent = budget
     for i in range(len(prices), 0, -1):
-        if knapsackMat[i][currSpent] != knapsackMat[i-1][currSpent]:
+        if knapsackMat[i][currSpent] != knapsackMat[i - 1][currSpent]:
             currSpent -= prices[i - 1]
             including.append(i - 1)
 

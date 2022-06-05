@@ -58,32 +58,32 @@ def askWants(questions):
 income = int(input("Enter your income per year: "))
 taxes = 0
 if income >= 625370:
-    taxes += 60789.92+((income-625369)*0.123)
+    taxes += 60789.92 + ((income - 625369) * 0.123)
 elif income >= 375222:
-    taxes += 32523.20+((income-375221)*0.113)
+    taxes += 32523.20 + ((income - 375221) * 0.113)
 elif income >= 312687:
-    taxes += 26082.09+((income-312687)*0.103)
+    taxes += 26082.09 + ((income - 312687) * 0.103)
 elif income >= 61215:
-    taxes += 2695.19+((income-61215)*0.093)
+    taxes += 2695.19 + ((income - 61215) * 0.093)
 elif income >= 48436:
-    taxes += 1672.87+((income-48436)*0.08)
+    taxes += 1672.87 + ((income - 48436) * 0.08)
 elif income >= 34893:
-    taxes += 860.29+((income-34893)*0.06)
+    taxes += 860.29 + ((income - 34893) * 0.06)
 elif income >= 22108:
-    taxes += 348.89+((income-22108)*0.04)
+    taxes += 348.89 + ((income - 22108) * 0.04)
 elif income >= 9326:
-    taxes += 93.25+((income-9326)*0.02)
+    taxes += 93.25 + ((income - 9326) * 0.02)
 else:
-    taxes = income*0.01
-income = income-taxes
+    taxes = income * 0.01
+income = income - taxes
 
 # yearly costs
 print("Please enter your yearly cost for the following items (in USD)")
 yearlyCosts = askCosts(
     ["Rent/Mortgage: ", "Food: ", "Gas: ", "Electricity bill: "])
-yearlyBudget = income-yearlyCosts
+yearlyBudget = income - yearlyCosts
 print(yearlyBudget)
-if(yearlyBudget < 0):
+if (yearlyBudget < 0):
     print("insufficient funds")
     exit()
 else:
@@ -102,17 +102,18 @@ trading = stockManager()
 for year in range(yearsToSimulate):
     # one time costs
     currBudget = yearlyBudget + yearlyLeftOver
-    currBudget -= askCosts(["Did you have any medical expenses"],
-                           ["Do you want to go on a vacation if so how much did it cost"],
-                           ["Did you donate any money"],
-                           ["How much money did you spend on your hobbies"],
-                           ["Do you owe any money this year?"])
+    currBudget -= askCosts(
+        ["Did you have any medical expenses"],
+        ["Do you want to go on a vacation if so how much did it cost"],
+        ["Did you donate any money"],
+        ["How much money did you spend on your hobbies"],
+        ["Do you owe any money this year?"])
 
     # stocks
     print("These are the stocks you have:")
     trading.display()
     inputStr = input("Would you like to trade stocks (y/N): ")
-    while lower(inputStr[0]) != 'n':
+    while inputStr[0].lower() != 'n':
         ticker, shares, action = input(
             "Enter the ticker, # of shares, and buy or sell: ")
         if action == "buy":
