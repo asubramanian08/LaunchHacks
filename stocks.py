@@ -11,7 +11,8 @@ class stockManager:
             self.shares = min(shares, int(limit / self.boughtAt))
 
         def __str__(self) -> str:
-            return f"{self.shares} shares of {self.ticker} bought at {self.boughtAt} now {self.price()}"
+            return f"{self.shares} shares of \
+{self.ticker} bought at {self.boughtAt} now {self.price()}"
 
         def sellShares(self, sell: int = 1):
             toSell = min(self.shares, sell)
@@ -27,7 +28,7 @@ class stockManager:
 
     def __init__(self):
         self.portfolio = []
-    
+
     def buy(self, ticker, shares, limit) -> (int, int):
         self.portfolio.append(self.stock(ticker, shares, limit))
         return self.portfolio[-1].shares, self.portfolio[-1].boughtAt

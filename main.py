@@ -82,7 +82,11 @@ print("You have", taxes, "of income taxes leaving you with", income)
 
 # yearly costs
 print("Please enter your yearly costs for the following items (in USD)")
-yearlyCosts = askCosts(["Set aside (saving up for a car ...): ", "Rent/Mortgage: ", "Food: ", "Gas: ", "Electricity bill: "])
+yearlyCosts = askCosts([
+    "Set aside (saving up for a car ...): ",
+    "Rent/Mortgage: ", "Food: ",
+    "Gas: ", "Electricity bill: "
+])
 yearlyBudget = round(income - yearlyCosts, 2)
 if (yearlyBudget < 0):
     exit("insufficient funds")
@@ -91,7 +95,10 @@ else:
 
 # yearly wants -> ADD QUESTIONS
 print("Enter the items you want ever year (in USD)")
-yearlyWants, yearlyWantsPrices, yearlyWantsValues = askWants(["Amusmement park season pass: "], ["Media subscription: "], ["Newspaper: "])
+yearlyWants, yearlyWantsPrices, yearlyWantsValues = askWants(
+    ["Amusement park season pass: "],
+    ["Media subscription: "],
+    ["Newspaper: "])
 
 # Major loop (1 iteration = 1 year)
 yearsToSimulate = int(input("How many years do you want to simulate: "))
@@ -125,13 +132,14 @@ for year in range(yearsToSimulate):
             currBudget += sold * price
         else:
             print("invalid action")
-        
+
         inputStr = input("Would you like to continue trading stocks (y/N): ")
 
     # one time wants -> MORE QUESTIONS
     print("You can spend $", currBudget, "this year on things you want")
     print("Enter the items you want this year (in USD)")
-    oneTimeWants, oneTimeWantsPrices, oneTimeWantsValues = [] = askWants(["New pet"])
+    oneTimeWants, oneTimeWantsPrices, oneTimeWantsValues = [] = askWants(
+        ["New pet"])
 
     # "buy the items"
     yearlyPurchases, oneTimePurchases, happiness, amountSpent = selectBuys(
@@ -143,8 +151,8 @@ for year in range(yearsToSimulate):
     print("BUY THE FOLLOWING ONE TIME PURCHASES")
     for i in oneTimePurchases:
         print(oneTimeWants[i])
-    print("After buying the above items you will be", happiness, "\"happy\" and will have", yearlyLeftOver, "left over for next year")
-
+    print("After buying the above items you will be", happiness,
+          "\"happy\" and will have", yearlyLeftOver, "left over for next year")
 
 # ending
 print("Thank you for playing the money manager simulator")
