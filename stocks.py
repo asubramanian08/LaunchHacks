@@ -1,15 +1,19 @@
 import pandas_datareader as web
 
+
 class stockManager:
     class stock:
         def __init__(self, ticker: str, shares: int, limit: float):
             self.ticker = ticker
             self.boughtAt = self.price()
-            self.shares = min(shares, int(limit / self.boughtAt))
+            if self.boughtAt == 0:
+                self.shares = 0
+            else:
+                self.shares = min(shares, int(limit / self.boughtAt))
 
         def __str__(self) -> str:
             return f"{self.shares} shares of \
-{self.ticker} bought at {self.boughtAt} now {self.price()}"
+{self.ticker} bought at ${self.boughtAt} now ${self.price()}"
 
         def sellShares(self, sell: int = 1) -> int:
             sharesSold = min(self.shares, sell)
@@ -21,8 +25,7 @@ class stockManager:
 
         @staticmethod
         def quote(ticker: str) -> float:
-            db = web.get_data_yahoo(ticker,
-            start = "2022-06-01")
+            db = web.get_data_yahoo(ticker, start="2022-06-01")
             stockAt = db['Adj Close'][-1]
             return round(stockAt, 2)
 

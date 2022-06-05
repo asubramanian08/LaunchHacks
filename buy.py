@@ -30,8 +30,8 @@ def selectBuys(budget: int, yearlyWantsPrices: list, yearlyWantsValues: list,
     cumulativePrices = yearlyWantsPrices + oneTimeWantsPrices
     cumulativeValues = yearlyWantsValues + oneTimeWantsValues
     for i in range(len(cumulativePrices)):  # knapsack requires int
-        cumulativePrices[i] = int(cumulativePrices * 100)
-        cumulativeValues[i] = int(cumulativeValues * 100)
+        cumulativePrices[i] = int(cumulativePrices[i] * 100)
+        cumulativeValues[i] = int(cumulativeValues[i] * 100)
     allPurchases, happiness = knapsack(
         cumulativePrices, cumulativeValues, int(budget * 100))
 
@@ -77,15 +77,15 @@ def knapsack(prices: list, values: list, budget: int) -> list:
 
     # run the knapsack algorithm
     knapsackMat = [[]]
-    for i in range(budget):
+    for i in range(budget + 1):
         knapsackMat[0].append(0)
-    for i in range(1, len(prices) + 1):
+    for i in range(len(prices)):
         knapsackMat.append([])
         for j in range(budget + 1):
             usingItemI = knapsackMat[i][j]
             if j >= prices[i]:
                 usingItemI = knapsackMat[i][j - prices[i]] + values[i]
-            knapsackMat[i + 1][j] = max(knapsackMat[i][j], usingItemI)
+            knapsackMat[i + 1].append(max(knapsackMat[i][j], usingItemI))
 
     # figure out what items to include
     including = []
