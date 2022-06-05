@@ -9,7 +9,7 @@ Our project contains three python files ([main.py](https://github.com/asubramani
 ## Helpful links
 
 * [Devpost project](https://devpost.com/software/money-manager-92zwrh)
-  * See a further discription of our project.
+  * See a further description of our project.
 * [Demo Video](https://www.youtube.com/watch?v=0KRYIShlde4)
 * [Replit](https://replit.com/@Jasamarbir/LaunchHacks)
 * [Github](https://github.com/asubramanian08/LaunchHacks)
