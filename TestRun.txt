@@ -1,23 +1,159 @@
-7
-1343435.64
-1190000
-45
-79
-0
-0
-NA
-netflix 40 4
-times 3 13
-NA
-NA
-NA
-100.54
-3
-NA
-0
-NA
-y
-buy NCLH 4
-NO
-doggy 400 50000
-NA
+Welcome to money manager simulator!
+Congrats! Your financial troubles are now over.
+With this program you will be better informed about your finances.
+How many years do you want to simulate: 1
+
+Enter your income per year: $25000
+You have $464.57 of income taxes, leaving you with $24535.43 to spe
+
+Welcome to money manager simulator!
+Congrats! Your financial troubles are now over.
+With this program you will be better informed about your finances.
+How many years do you want to simulate: 1
+
+Enter your income per year: $25000
+You have $464.57 of income taxes, leaving you with $24535.43 to spend.
+
+Enter your yearly costs for the following items (in USD).
+Think about: Rent, Gas, Electricity, Long term goals, ...
+
+Welcome to money manager simulator!
+Congrats! Your financial troubles are now over.
+With this program you will be better informed about your finances.
+How many years do you want to simulate: 1
+
+Enter your income per year: $25000
+You have $464.57 of income taxes, leaving you with $24535.43 to spend.
+
+Enter your yearly costs for the following items (in USD).
+Think about: Rent, Gas, Electricity, Long term goals, ...
+Write the item then the cost in dollars (NA to stop).
+Enter a cost: Gas 1000
+Enter another cost: NA
+You can spend $23535.43 every year.
+
+Enter the items you want ever year (in USD).
+
+Welcome to money manager simulator!
+Congrats! Your financial troubles are now over.
+With this program you will be better informed about your finances.
+How many years do you want to simulate: 1
+
+Enter your income per year: $25000
+You have $464.57 of income taxes, leaving you with $24535.43 to spend.
+
+Enter your yearly costs for the following items (in USD).
+Think about: Rent, Gas, Electricity, Long term goals, ...
+Write the item then the cost in dollars (NA to stop).
+Enter a cost: Gas 1000
+Enter another cost: NA
+You can spend $23535.43 every year.
+
+Enter the items you want ever year (in USD).
+Think about: 6 flags season pass, netflix, newspaper, ...
+Respond in the form "itemName price happinessValue" (NA to stop).
+Enter a wanted item: Netflic 10 5
+Enter another wanted item: NA
+
+
+Welcome to money manager simulator!
+Congrats! Your financial troubles are now over.
+With this program you will be better informed about your finances.
+How many years do you want to simulate: 1
+
+Enter your income per year: $25000
+You have $464.57 of income taxes, leaving you with $24535.43 to spend.
+
+Enter your yearly costs for the following items (in USD).
+Think about: Rent, Gas, Electricity, Long term goals, ...
+Write the item then the cost in dollars (NA to stop).
+Enter a cost: Car 30
+Enter another cost: NA
+You can spend $24505.43 every year.
+
+Enter the items you want ever year (in USD).
+Think about: 6 flags season pass, netflix, newspaper, ...
+
+Welcome to money manager simulator!
+Congrats! Your financial troubles are now over.
+With this program you will be better informed about your finances.
+How many years do you want to simulate: 2
+
+Enter your income per year: $25000
+You have $464.57 of income taxes, leaving you with $24535.43 to spend.
+
+Enter your yearly costs for the following items (in USD).
+Think about: Rent, Gas, Electricity, Long term goals, ...
+Write the item then the cost in dollars (NA to stop).
+Enter a cost: Rent 50
+Enter another cost: NA
+You can spend $24485.43 every year.
+
+Enter the items you want ever year (in USD).
+Think about: 6 flags season pass, netflix, newspaper, ...
+Respond in the form "itemName price happinessValue" (NA to stop).
+Enter a wanted item: Netflix 10 5
+Enter another wanted item: NA
+
+Starting year by year simulation.
+
+
+Year 1:
+You can spend $24485.43 in total this year
+
+Enter your costs for this year (in USD).
+Think about: Medical costs, Vacation, Donations, ...
+Write the item then the cost in dollars (NA to stop).
+Enter a cost: Donate 500
+Enter another cost: NA
+
+These are the stocks you have.
+Would you like to trade stocks (y/N): y
+You have $23985.43 left to spend.
+Enter buy or sell, ticker, and # of shares: buy GOOGL 2
+Bought 2 shares of GOOGL at $2290.82.
+Would you like to continue trading stocks (y/N): N
+
+You can spend $19403.79 this year on things you want
+Enter the items you want this year (in USD)
+Think about: Trends, New pet, clothing, ...
+Respond in the form "itemName price happinessValue" (NA to stop).
+Enter a wanted item: Pet 100 5
+Enter another wanted item: NA
+
+Buy the following yearly wanted items.
+Netflix
+Buy the following one time items.
+Pet
+After buying the above items you will be 1000  "happy" and will have $19388.79 left over for next year
+
+
+Year 2:
+You can spend $43874.22 in total this year
+
+Enter your costs for this year (in USD).
+Think about: Medical costs, Vacation, Donations, ...
+Write the item then the cost in dollars (NA to stop).
+Enter a cost: Donation 200
+Enter another cost: NA
+
+These are the stocks you have.
+2 shares of GOOGL bought at $2290.82 now $2290.82
+Would you like to trade stocks (y/N): N
+
+You can spend $43674.22 this year on things you want
+Enter the items you want this year (in USD)
+Think about: Trends, New pet, clothing, ...
+Respond in the form "itemName price happinessValue" (NA to stop).
+Enter a wanted item: iphone 1000 5
+Enter another wanted item: NA
+
+Buy the following yearly wanted items.
+Netflix
+Buy the following one time items.
+iphone
+After buying the above items you will be 1000  "happy" and will have $43659.22 left over for next year
+
+Thank you for playing the money manager simulator!
+We hope you enjoyed managing your finances! 
+ 
