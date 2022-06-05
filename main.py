@@ -1,4 +1,5 @@
 from buy import selectBuys
+from stock import stockManager
 
 # Introduction
 print("Welcome to money manager simulator")
@@ -25,6 +26,7 @@ def askCosts(questions):
     # return the total costs
     return totalCost
 
+
 def askWants(questions):
     """ Ask the user a bunch of questions to determine their yearly or one time wants. """
     itemNames = []
@@ -50,7 +52,8 @@ def askWants(questions):
         inputStr = input("Enter additional costs:")
     # return the names, prices, and values
     return itemNames, prices, values
-  
+
+
 # get the net salary (income - taxes)
 income = int(input("Enter your income per year: "))
 taxes = 0
@@ -95,29 +98,49 @@ yearlyWants = [str]
 # Major loop (1 iteration = 1 year)
 yearsToSimulate = int(input("How many years do you want to simulate: "))
 yearlyLeftOver = 0
+trading = stockManager()
 for year in range(yearsToSimulate):
-    currBudget = yearlyBudget + yearlyLeftOver
     # one time costs
-    currBudget -= askCosts(["Did you have any medical expenses"], ["Do you want to go on a vacation if so how much did it cost"], ["Did you donate any money"], ["How much money did you spend on your hobbies"], ["Do you owe any money this year?"])
+    currBudget = yearlyBudget + yearlyLeftOver
+    currBudget -= askCosts(["Did you have any medical expenses"],
+                           ["Do you want to go on a vacation if so how much did it cost"],
+                           ["Did you donate any money"],
+                           ["How much money did you spend on your hobbies"],
+                           ["Do you owe any money this year?"])
+
+    # stocks
+    print("These are the stocks you have:")
+    trading.display()
+    inputStr = input("Would you like to trade stocks (y/N): ")
+    while lower(inputStr[0]) != 'n':
+        ticker, shares, action = input(
+            "Enter the ticker, # of shares, and buy or sell: ")
+        if action == "buy":
+            currBudget -= trading.buy(ticker, int(shares))
+        elif action == "sell":
+            currBudget += trading.sell(ticker, int(shares))
+        else:
+            print("invalid action")
+        inputStr = input("Would you like to continue trading stocks (y/N): ")
 
     # one time wants
+    print("You can spend $", currBudget, "this year on things you want")
     oneTimeWantsPrices = []
     oneTimeWantsValues = []
     oneTimeWants = [str]
     # WRITE THIS LATER
-    
+
     # "buy the items"
     yearlyPurchases, oneTimePurchases, happiness, amountSpent = selectBuys(
         currBudget, yearlyWantsPrices, yearlyWantsValues, oneTimeWantsValues, oneTimeWantsValues)
     yearlyLeftOver = currBudget - amountSpent
-    print("BUY THE FOLLOWING YEARLY ITEMS")  
+    print("BUY THE FOLLOWING YEARLY ITEMS")
     for i in yearlyPurchases:
         print(yearlyWants[i])
-    print("BUY THE FOLLOWING ONE TIME PURCHASES")  
+    print("BUY THE FOLLOWING ONE TIME PURCHASES")
     for i in oneTimePurchases:
         print(oneTimeWants[i])
 
-    # STOCKS
 
 # ending
 print("Thank you for playing the money manager simulator")
