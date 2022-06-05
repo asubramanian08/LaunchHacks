@@ -40,7 +40,7 @@ def askWants() -> (list, list, list):
 # Introduction
 print()  # new line
 print("Welcome to money manager simulator!")
-print("Congrats! Your financial troubles are now over.")
+print("Congrats! Your financial troubles are now over. Just try not to make your number go into the negative")
 print("With this program you will be better informed about your finances.")
 yearsToSimulate = int(input("How many years do you want to simulate: "))
 print()  # new line
