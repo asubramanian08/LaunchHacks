@@ -96,14 +96,17 @@ for year in range(yearsToSimulate):
     currBudget = yearlyBudget + yearlyLeftOver
     # one time costs
     currBudget -= askCosts(["Did you have any medical expenses"])
+    currBudget -= askCosts(["Do you want to go on a vacation if so how much did it cost"])
+    currBudget -= askCosts(["Did you donate any money"])
+    currBudget -= askCosts(["How much money did you spend on your hobbies"])
+    currBudget -= askCosts(["Do you owe any money this year?"])
     # ASK MORE QUESTIONS
 
     # one time wants
-    # WRITE THIS LATER
     oneTimeWantsPrices = []
     oneTimeWantsValues = []
     oneTimeWants = [str]
-    # price + happiness
+    # WRITE THIS LATER
     
     # "buy the items"
     yearlyPurchases, oneTimePurchases, happiness, amountSpent = selectBuys(
