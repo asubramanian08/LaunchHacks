@@ -1,3 +1,5 @@
+import pandas_datareader as web
+
 class stockManager:
     class stock:
         def __init__(self, ticker: str, shares: int, limit: float):
@@ -19,7 +21,9 @@ class stockManager:
 
         @staticmethod
         def quote(ticker: str) -> float:
-            stockAt = 0.000
+            db = web.get_data_yahoo(ticker,
+            start = "2022-06-01")
+            stockAt = db['Adj Close'][-1]
             return round(stockAt, 2)
 
     def __init__(self):
