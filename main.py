@@ -1,9 +1,8 @@
 from buy import selectBuys
 from stocks import stockManager
 
-# TODO main.py, stocks.py: add better comments
+# TODO main.py: add better comments
 #   Docstring, whole files notes, arg type, return type
-# TODO stocks.py: class and its methods docstring
 # TODO main.py: make more robust (handle all inputs)
 # TODO all files: reformat + one line init + divide lines
 # TODO: final run -> lots of testing
@@ -40,7 +39,8 @@ def askWants() -> (list, list, list):
 # Introduction
 print()  # new line
 print("Welcome to money manager simulator!")
-print("Congrats! Your financial troubles are now over. Just try not to make your number go into the negative")
+print("Congrats! Your financial troubles are now over.")
+print("Just try not to make your account go into the negatives. ")
 print("With this program you will be better informed about your finances.")
 yearsToSimulate = int(input("How many years do you want to simulate: "))
 print()  # new line
@@ -150,7 +150,7 @@ for year in range(yearsToSimulate):
     print("Buy the following one time items.")
     for i in oneTimePurchases:
         print(oneTimeWants[i])
-    print(f"After buying the above items you will be {happiness}  \
+    print(f"After buying the above items you will be {happiness} \
 \"happy\" and will have ${yearlyLeftOver:.2f} left over for next year")
     print()  # new line
 
