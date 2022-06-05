@@ -2,7 +2,7 @@
 
 
 def selectBuys(budget: int, yearlyWantsPrices: list, yearlyWantsValues: list,
-               oneTimeWantsPrices: list, oneTimeWantsValues: list) -> (list, list, int, int):
+               oneTimeWantsPrices: list, oneTimeWantsValues: list) -> (list, list, int, float):
     """ Selects the optimal items to buy to maximize the happiness value.
 
     Parameters
@@ -23,14 +23,17 @@ def selectBuys(budget: int, yearlyWantsPrices: list, yearlyWantsValues: list,
     * list -> yearly wants that should be bought
     * list -> one time purchases that should be bought
     * int -> happiness attained for all items bought
-    * int -> total price of all purchases
+    * float -> total price of all purchases
     """
 
     # Best items to buy (knapsack algorithm)
     cumulativePrices = yearlyWantsPrices + oneTimeWantsPrices
     cumulativeValues = yearlyWantsValues + oneTimeWantsValues
+    for i in range(len(cumulativePrices)):  # knapsack requires int
+        cumulativePrices[i] = int(cumulativePrices * 100)
+        cumulativeValues[i] = int(cumulativeValues * 100)
     allPurchases, happiness = knapsack(
-        cumulativePrices, cumulativeValues, budget)
+        cumulativePrices, cumulativeValues, int(budget * 100))
 
     # Which yearly vs. one time items were bought
     yearlyPurchases = []

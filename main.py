@@ -9,25 +9,25 @@ you will be able to support your current lifestyle \
 based on your yearly income.")
 
 
-def askCosts(questions):
+def askCosts(questions: list) -> float:
     """ Ask the user a bunch of questions to determine their yearly or one time costs. """
     totalCost = 0
     # ask questions
     for q in questions:
-        currCost = int(input(q))
+        currCost = round(float(input(q)), 2)
         totalCost += currCost
     # additional costs
     print("Enter any additional costs (NA to quit). Write the item then the cost in dollars.")
     inputStr = "ITEM 0"
     while inputStr != "NA":
         item, currCost = inputStr.split(' ')
-        totalCost += int(currCost)
+        totalCost += round(float(currCost), 2)
         inputStr = input("Enter additional costs: ")
     # return the total costs
     return totalCost
 
 
-def askWants(questions):
+def askWants(questions: list) -> (list, list, list):
     """ Ask the user a bunch of questions to determine their yearly or one time wants. """
     itemNames = []
     prices = []
@@ -39,16 +39,16 @@ def askWants(questions):
         if inputStr != "NA":
             itemName, price, value = inputStr.split(' ')
             itemNames.append(itemName)
-            prices.append(int(price))
-            values.append(int(value))
+            prices.append(round(float(price), 2))
+            values.append(round(float(value), 2))
     # additional wants
     print("Enter any additional wants with the same format as before (NA to quit).")
     inputStr = input("Enter additional costs:")
     while inputStr != "NA":
         itemName, price, value = inputStr.split(' ')
         itemNames.append(itemName)
-        prices.append(int(price))
-        values.append(int(value))
+        prices.append(round(float(price), 2))
+        values.append(round(float(value), 2))
         inputStr = input("Enter additional costs:")
     # return the names, prices, and values
     return itemNames, prices, values
@@ -114,7 +114,7 @@ for year in range(yearsToSimulate):
         ["How much money did you spend on your hobbies"],
         ["Do you owe any money this year?"])
 
-    # stocks -> RENAME TRADING
+    # stocks
     print("These are the stocks you have:")
     sm.display()
     inputStr = input("Would you like to trade stocks (y/N): ")
@@ -132,7 +132,7 @@ for year in range(yearsToSimulate):
             currBudget += sold * price
         else:
             print("invalid action")
-
+        currBudget = round(currBudget, 2)
         inputStr = input("Would you like to continue trading stocks (y/N): ")
 
     # one time wants -> MORE QUESTIONS
@@ -144,7 +144,7 @@ for year in range(yearsToSimulate):
     # "buy the items"
     yearlyPurchases, oneTimePurchases, happiness, amountSpent = selectBuys(
         currBudget, yearlyWantsPrices, yearlyWantsValues, oneTimeWantsValues, oneTimeWantsValues)
-    yearlyLeftOver = currBudget - amountSpent
+    yearlyLeftOver = round(currBudget - amountSpent, 2)
     print("BUY THE FOLLOWING YEARLY ITEMS")
     for i in yearlyPurchases:
         print(yearlyWants[i])
