@@ -1,12 +1,6 @@
 from buy import selectBuys
 from stocks import stockManager
 
-# TODO main.py: add better comments
-#   Docstring, whole files notes, arg type, return type
-# TODO main.py: make more robust (handle all inputs)
-# TODO all files: reformat + one line init + divide lines
-# TODO: final run -> lots of testing
-
 
 def askCosts() -> float:
     """ Determine the users yearly or one time costs. """
