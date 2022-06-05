@@ -1,8 +1,3 @@
-# for docstring: full file annotations, arg type, arg default, return
-# look up how to annotate a class and its methods
-# add in the actually stock quote code
-
-
 class stockManager:
     class stock:
         def __init__(self, ticker: str, shares: int, limit: float):

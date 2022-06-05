@@ -1,6 +1,14 @@
 from buy import selectBuys
 from stocks import stockManager
 
+# TODO main.py: debug program and ensure all files work
+# TODO stocks.py: actually getting live stock quotes
+# TODO main.py: Add yearly / one time wants questions
+# TODO main.py, stocks.py: add better comments
+#   Docstring, whole files notes, arg type, return type
+# TODO stocks.py: class and its methods docstring
+# TODO all files: reformat code + one line initializations
+
 # Introduction
 print("Welcome to money manager simulator")
 print("Congrats, Your financial troubles are now over, \
